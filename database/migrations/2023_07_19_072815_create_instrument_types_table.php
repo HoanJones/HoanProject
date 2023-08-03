@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('instrument__types', function (Blueprint $table) {
-            $table->bigIncrements('id'); //ID loại nhạc cụ
+        Schema::create('instrument_types', function (Blueprint $table) {
+            $table->id(); //ID loại nhạc cụ
             $table->string('name')->unique(); //tên loại nhạc cụ
             $table->text('information')->nullable(); //thông tin về loại nhạc cụs
-            //$table->timestamps();
-            //$table->rememberToken();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('instrument__types');
+        Schema::dropIfExists('instrument_types');
     }
 };

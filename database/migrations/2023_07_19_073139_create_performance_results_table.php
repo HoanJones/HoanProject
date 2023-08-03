@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('performance__results', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('performance_results', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('member_id')->nullable();
-            $table->string('term')->nullbale(); //kỳ hoạt động
-            $table->text('result_infor')->nullable(); //thông tin kết quả
+            $table->string('term')->nullable(); //kỳ hoạt động
+            $table->string('result_infor')->nullable(); //thông tin kết quả
             $table->string('evalute', 30)->nullable(); //đánh giá kết quả hoạt động
             $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
-            //$table->rememberToken();
+            $table->timestamps();
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('performance__results');
+        Schema::dropIfExists('performance_results');
     }
 };

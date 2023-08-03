@@ -12,15 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('members', function (Blueprint $table) {
-            $table->bigIncrements('id'); //id của thành viên
+            $table->id(); //id của thành viên
             $table->unsignedBigInteger('user_id')->unique(); //id tài khoản
             $table->date('start_time')->nullable(); //thời gian trúng tuyển
             $table->string('level')->nullable(); //trình độ
-            $table->text('hobby')->nullable(); //
+            $table->string('hobby')->nullable(); //
             $table->string('status')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->rememberToken();
-            //$table->timestamp();
+            $table->timestamps();
         });
     }
 

@@ -13,16 +13,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('videos', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name')->nullable();
-            $table->unsignedBigInteger('event_id')->nullable(); 
+            $table->unsignedBigInteger('event_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable(); //ID tài khoản đăng tải
             $table->string('link');
             $table->dateTime('post_time')->default(DB::raw('CURRENT_TIMESTAMP')); //thời gian post video
-            //$table->timestamps();
+            $table->timestamps();
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            //$table->rememberToken();
         });
     }
 

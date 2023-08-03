@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('submittions', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->text('sub_infor')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            //$table->rememberToken();
+            $table->timestamps();
         });
     }
 

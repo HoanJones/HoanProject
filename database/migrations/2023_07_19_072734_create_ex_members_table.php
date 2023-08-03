@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ex__members', function (Blueprint $table) {
-            $table->bigIncrements('id'); // ID của cựu thành viên
-            $table->unsignedBigInteger('user_id'); //ID tài khoản
+        Schema::create('ex_members', function (Blueprint $table) {
+            $table->id(); // ID của cựu thành viên
+            $table->unsignedBigInteger('user_id')->unique(); //ID tài khoản
             $table->date('start_time')->nullable();
             $table->date('end_time')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->rememberToken();
-            //$table->timestamp();
+            $table->timestamps();
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ex__members');
+        Schema::dropIfExists('ex_members');
     }
 };

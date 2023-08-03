@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->unsignedBigInteger('executive_board_id')->nullable();
             $table->string('event_name')->nullable();
             $table->date('start_time')->nullable(); //thời gian sự kiện bắt đầu
@@ -20,9 +20,8 @@ return new class extends Migration
             $table->text('event_address')->nullable();
             $table->unsignedInteger('instrument_num')->nullable();
             $table->unsignedInteger('member_num')->nullable();
-            //$table->timestamps();
+            $table->timestamps();
             $table->foreign('executive_board_id')->references('id')->on('executive__boards')->onDelete('cascade');
-            //$table->rememberToken();
         });
     }
 
