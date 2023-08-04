@@ -38,24 +38,30 @@
                 <!-- title-->
                 <h4 class="mt-0">Đăng nhập</h4>
                 <p class="text-muted mb-4">Nhập ID và mật khẩu để đăng nhập.</p>
-
+                @include('layout.partials.messages')
                 <!-- form -->
-                <form method="post" action="{{route('process-login')}}">
+                <form method="post" action="{{route('logging-in')}}">
                     @csrf
                     <div class="form-group">
                         <label for="emailaddress">ID</label>
                         <input class="form-control" type="text" name="id" id="id" required=""
                                placeholder="Nhập ID">
+                        @if ($errors->has('id'))
+                            <span class="text-danger text-left">{{ $errors->first('id') }}</span>
+                        @endif
                     </div>
                     <div class="form-group">
                         <a href="{{route('recoverpw')}}" class="text-muted float-right"><small>Quên mật khẩu?</small></a>
                         <label for="password">Mật khẩu</label>
                         <input class="form-control" type="password" name="password" required="" id="password"
                                placeholder="Nhập mật khẩu">
+                        @if ($errors->has('password'))
+                            <span class="text-danger text-left">{{ $errors->first('password') }}</span>
+                        @endif
                     </div>
                     <div class="form-group mb-3">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="checkbox-signin">
+                            <input type="checkbox" class="custom-control-input" id="checkbox-signin" name="remember" value="1">
                             <label class="custom-control-label" for="checkbox-signin">Lưu đăng nhập</label>
                         </div>
                     </div>

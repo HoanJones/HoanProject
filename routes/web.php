@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ExecutiveBoardController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,14 +15,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-*/
+
 Route::middleware('guest')->group(function () {
-    Route::get('/', [AuthController::class, 'index'])->name('login');
-    Route::post('/', [AuthController::class, 'processLogin'])->name('process-login');
+    Route::get('/', [AuthController::class, 'login'])->name('login');
+    Route::post('/', [AuthController::class, 'loggingIn'])->name('logging-in');
     Route::get('recoverpw', [AuthController::class, 'recoverpw'])->name('recoverpw');
 });
 

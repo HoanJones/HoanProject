@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedInteger('instrument_num')->nullable();
             $table->unsignedInteger('member_num')->nullable();
             $table->timestamps();
-            $table->foreign('executive_board_id')->references('id')->on('executive__boards')->onDelete('cascade');
+            $table->foreign('executive_board_id')->references('id')->on('executive_boards')->onDelete('cascade');
         });
     }
 
