@@ -8,9 +8,12 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Services\Login\RememberMeExpiration;
 
 class AuthController extends Controller
 {
+    use RememberMeExpiration;
+
     public function login()
     {
         return view('auth.login');
@@ -36,11 +39,11 @@ class AuthController extends Controller
 
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
-//        Auth::login($user, $request->get('remember'));
-//
-//        if ($request->get('remember')):
-//            $this->setRememberMeExpiration($user);
-//        endif;
+        Auth::login($user, $request->get('remember'));
+
+        if ($request->get('remember')):
+            $this->setRememberMeExpiration($user);
+        endif;
 
         return $this->authenticated($request, $user);
 
@@ -56,6 +59,8 @@ class AuthController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
+
+
         return redirect()->intended();
     }
 
