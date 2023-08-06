@@ -32,7 +32,7 @@
                 <span> Lịch sự kiện </span>
             </a>
             <a href="#" class="side-nav-link">
-                <i class="fas fa-heart"></i>
+                <i class="uil-calender"></i>
                 <span> Sheet - Cảm âm </span>
             </a>
             <a href="#" class="side-nav-link">

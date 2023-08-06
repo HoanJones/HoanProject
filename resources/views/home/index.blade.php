@@ -1,5 +1,6 @@
 @extends('layout.master')
 @section('content')
+    @include('layout.partials.messages')
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -110,7 +111,7 @@
                                        value="{{$term}}">
                             </div>
                             <a href="{{route('home.admin_edit')}}" class="btn btn-primary">Sửa</a>
-                        
+
                         </div>
                         --}}
                     </div>
@@ -119,3 +120,4 @@
         </div>
     </div>
 @endsection
+

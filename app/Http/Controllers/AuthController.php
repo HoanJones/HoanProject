@@ -57,11 +57,9 @@ class AuthController extends Controller
      *
      * @return RedirectResponse
      */
-    protected function authenticated(Request $request, $user)
+    protected function authenticated(Request $request, $user): RedirectResponse
     {
-
-
-        return redirect()->intended();
+        return redirect()->intended()->with('success', 'You have Successfully Logged In');
     }
 
     public function recoverpw()
@@ -69,7 +67,7 @@ class AuthController extends Controller
         return view('auth.recoverpw');
     }
 
-    public function logout()
+    public function logout(): RedirectResponse
     {
         Session::flush();
 
