@@ -19,6 +19,12 @@
                 <span> Dashboards </span>
             </a>
         </li>
+        <li class="side-nav-item">
+            <a href="{{route('user.index')}}" class="side-nav-link">
+                <i class="uil-home-alt"></i>
+                <span> My Profile </span>
+            </a>
+        </li>
 
         <li class="side-nav-title side-nav-item">Tính năng</li>
 

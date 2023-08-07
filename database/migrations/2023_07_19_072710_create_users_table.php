@@ -14,11 +14,11 @@ return new class extends Migration {
             $table->id();
             $table->string('password');
             $table->string('name', 50)->nullable();
-            $table->tinyInteger('role')->index()->default(2); //role: superadmin=0; admin=1; member = 2;
+            $table->tinyInteger('role')->comment('UserRoleEnum')->index()->default(2);
             $table->date('birthday')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->tinyInteger('gender')->nullable(); //giới tính: nam = 0; nu = 1;
+            $table->tinyInteger('gender')->comment('UserGenderEnum')->default(0)->index();
             $table->string('address')->nullable();
             $table->char('phone_number', 10)->nullable();
             $table->string('job', 100)->nullable();

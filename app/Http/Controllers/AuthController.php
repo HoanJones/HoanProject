@@ -59,7 +59,7 @@ class AuthController extends Controller
      */
     protected function authenticated(Request $request, $user): RedirectResponse
     {
-        return redirect()->intended()->with('success', 'You have Successfully Logged In');
+        return redirect()->intended('user')->with('success', 'You have Successfully Logged In');
     }
 
     public function recoverpw()

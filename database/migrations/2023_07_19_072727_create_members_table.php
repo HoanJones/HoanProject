@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('start_time')->nullable(); //thời gian trúng tuyển
             $table->string('level')->nullable(); //trình độ
             $table->string('hobby')->nullable(); //
-            $table->string('status')->nullable();
+            $table->string('status')->nullable(); // dang hoat dong / tam nghi hoat dong / ngung hoat dong
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

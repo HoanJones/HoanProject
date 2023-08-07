@@ -2,19 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AccountUser;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Throwable;
+use Illuminate\Support\Facades\View;
 
 class UserController extends Controller
 {
-    public function index(AccountUser $user)
-    {
-        $users = $user->getDatadb();
+    private object $model;
+    private string $table;
 
-        return view('home.index');
+    public function __construct()
+    {
+        $this->model = User::query();
+        $this->table = (new User())->getTable();
+
+        View::share('title', ucwords($this->table));
+        View::share('table', $this->table);
+    }
+
+    public function index(User $user)
+    {
+        return view('user.index');
     }
 
     public function edit(AccountUser $user)
