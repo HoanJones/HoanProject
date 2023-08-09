@@ -39,8 +39,8 @@
                                 <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
                             </span>
                     <span>
-                                <span class="account-user-name">Phạm Văn Hoan</span>
-                                <span class="account-position">Admin</span>
+                                <span class="account-user-name">{{ $authUser->name ?? '' }}</span>
+                                <span class="account-position">{{ $authUser->role ?? '' }}</span>
                             </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown"

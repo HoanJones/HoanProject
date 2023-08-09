@@ -2,15 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 
 class User extends Authenticatable
 {
@@ -42,6 +39,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password'          => 'hashed',
+        'gender_name' => 'string',
     ];
 
     /**
@@ -56,8 +54,10 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($value);
     }
 
-    public function getGenderNameAttribute()
+    protected function genderName(): Attribute
     {
-        return ($this->gender === 0) ? 'Nam' : 'Nữ';
+        return Attribute::make(
+            get: static fn (int $value) => ($value === 0) ? 'Nam' : 'Nữ',
+        );
     }
 }

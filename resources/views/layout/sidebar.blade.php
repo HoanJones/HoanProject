@@ -1,10 +1,10 @@
 <div class="left-side-menu left-side-menu-detached">
 
     <div class="leftbar-user">
-        <a href="javascript: void(0);">
+        <a href="">
             <img src="{{asset('assets/images/users/avatar-1.jpg')}}" alt="user-image" height="42"
                  class="rounded-circle shadow-sm">
-            <span class="leftbar-user-name">Phạm Văn Hoan</span>
+            <span class="leftbar-user-name">{{ $authUser->name ?? '' }}</span>
         </a>
     </div>
 

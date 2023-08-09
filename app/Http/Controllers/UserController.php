@@ -12,22 +12,44 @@ class UserController extends Controller
 {
     private object $model;
     private string $table;
+    private object $currentUser;
 
     public function __construct()
     {
         $this->model = User::query();
         $this->table = (new User())->getTable();
-
         View::share('title', ucwords($this->table));
         View::share('table', $this->table);
     }
 
     public function index(User $user)
     {
-        return view('user.index');
+        $id           = Auth::user()->id;
+        $role         = Auth::user()->role;
+        $name         = Auth::user()->name;
+        $birthday     = Auth::user()->birthday;
+        $email        = Auth::user()->email;
+        $gender       = Auth::user()->gender;
+        $address      = Auth::user()->address;
+        $phone_number = Auth::user()->phone_number;
+        $job          = Auth::user()->job;
+        $work_place   = Auth::user()->work_place;
+
+        return view('user.index', [
+            'id'           => $id,
+            'role'         => $role,
+            'name'         => $name,
+            'birthday'     => $birthday,
+            'email'        => $email,
+            'gender'       => $gender,
+            'address'      => $address,
+            'phone_number' => $phone_number,
+            'job'          => $job,
+            'work_place'   => $work_place,
+        ]);
     }
 
-    public function edit(AccountUser $user)
+    public function edit(User $user)
     {
         $users = $user->getDatadb();
 
@@ -43,16 +65,11 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(Request $request, AccountUser $user)
+    public function update(Request $request, User $user)
     {
         $data = $request->except(['_token', '_method']);
         DB::table('users')->update($data);
 
         return redirect()->route('home');
     }
-    /*
-    public function destroy(Request $request, AccountUser $user) {
-
-    }
-    */
 }
