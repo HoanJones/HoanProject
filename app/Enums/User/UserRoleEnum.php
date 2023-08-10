@@ -10,4 +10,19 @@ final class UserRoleEnum extends Enum
     public const ADMIN = 1;
     public const MEMBER = 2;
     public const EX_MEMBER = 3;
+
+    public static function getArrayView(): array
+    {
+        return [
+            'Super admin'  => self::SUPER_ADMIN,
+            'Admin'  => self::ADMIN,
+            'Thành viên' => self::MEMBER,
+            'Thành viên cũ' => self::EX_MEMBER,
+        ];
+    }
+
+    public static function getKeyByValue($value): string
+    {
+        return array_search($value, self::getArrayView(), true);
+    }
 }

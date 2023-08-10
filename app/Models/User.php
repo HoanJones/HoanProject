@@ -19,7 +19,13 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'birthday',
         'email',
+        'gender',
+        'address',
+        'phone_number',
+        'job',
+        'work_place',
         'password',
     ];
 
@@ -39,25 +45,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password'          => 'hashed',
-        'gender_name' => 'string',
     ];
 
-    /**
-     * Always encrypt password when it is updated.
-     *
-     * @param $value
-     *
-     * @return string
-     */
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = bcrypt($value);
-    }
-
-    protected function genderName(): Attribute
-    {
-        return Attribute::make(
-            get: static fn (int $value) => ($value === 0) ? 'Nam' : 'Nữ',
-        );
-    }
 }

@@ -21,7 +21,7 @@
         </li>
         <li class="side-nav-item">
             <a href="{{route('user.index')}}" class="side-nav-link">
-                <i class="uil-home-alt"></i>
+                <i class="uil-user"></i>
                 <span> My Profile </span>
             </a>
         </li>
@@ -34,24 +34,28 @@
                 <span> Lịch hoạt động </span>
             </a>
             <a href="#" class="side-nav-link">
-                <i class="uil-calender"></i>
+                <i class="uil-schedule"></i>
                 <span> Lịch sự kiện </span>
             </a>
             <a href="#" class="side-nav-link">
-                <i class="uil-calender"></i>
+                <i class="uil-clipboard-alt"></i>
                 <span> Sheet - Cảm âm </span>
             </a>
             <a href="#" class="side-nav-link">
-                <i class="uil-calender"></i>
+                <i class="uil-youtube"></i>
                 <span> Video </span>
             </a>
             <a href="#" class="side-nav-link">
-                <i class="uil-calender"></i>
+                <i class="uil-music"></i>
                 <span> Mượn/Trả nhạc cụ </span>
             </a>
             <a href="#" class="side-nav-link">
-                <i class="uil-calender"></i>
-                <span> Thông tin tài khoản khác </span>
+                <i class="uil-lock-open-alt"></i>
+                <span> Đổi mật khẩu </span>
+            </a>
+            <a href="#" class="side-nav-link">
+                <i class="uil-layer-group"></i>
+                <span> Tài khoản khác </span>
             </a>
         </li>
     </ul>

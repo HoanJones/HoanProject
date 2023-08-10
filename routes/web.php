@@ -24,10 +24,13 @@ Route::middleware('guest')->group(function () {
 
 //Route vào trang chủ của hệ thống
 Route::middleware('auth')->group(function () {
-    Route::resource('user', UserController::class);
+    Route::resource('user', UserController::class)->except([
+        'show',
+        'create',
+        'store',
+        'destroy',
+    ]);
     Route::get('home', [UserController::class, 'index'])->name('home');
-    //Route::get('home/admin_edit', [ExecutiveBoardController::class, 'edit'])->name('home.admin_edit');
-    //Route::get('home/update', [ExecutiveBoardController::class, 'update'])->name('home.update');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 

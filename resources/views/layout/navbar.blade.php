@@ -36,22 +36,22 @@
                    href="#" role="button" aria-haspopup="true"
                    aria-expanded="false">
                             <span class="account-user-avatar">
-                                <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                                <img src="{{asset('assets/images/users/avatar-1.jpg')}}" alt="user-image" class="rounded-circle">
                             </span>
                     <span>
                                 <span class="account-user-name">{{ $authUser->name ?? '' }}</span>
-                                <span class="account-position">{{ $authUser->role ?? '' }}</span>
+                                <span class="account-position">{{ getUserRoleByKey($authUser->role) ?? '' }}</span>
                             </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown"
                      aria-labelledby="topbar-userdrop">
                     <!-- item-->
                     <div class=" dropdown-header noti-title">
-                        <h6 class="text-overflow m-0">Welcome !</h6>
+                        <h6 class="text-overflow m-0">Welcome {{ $authUser->name ?? '' }}!</h6>
                     </div>
 
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <a href="{{ route('home') }}" class="dropdown-item notify-item">
                         <i class="mdi mdi-home mr-1"></i>
                         <span>Dashboard</span>
                     </a>

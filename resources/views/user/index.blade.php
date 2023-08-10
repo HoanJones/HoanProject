@@ -1,5 +1,6 @@
 @extends('layout.master')
 @section('content')
+    @include('layout.partials.errortoast')
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -10,55 +11,57 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputId" class="col-form-label">ID</label>
-                                    <input type="text" readonly class="form-control" id="inputId" value="{{$id}}">
+                                    <input type="text" readonly class="form-control" id="inputId"
+                                           value="{{ $data->id }}">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="role" class="col-form-label">Vai trò</label>
-                                    <input type="text" class="form-control" readonly id="role" value="{{$role}}">
+                                    <input type="text" class="form-control" readonly id="role"
+                                           value="{{getUserRoleByKey($data->role)}}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="name" class="col-form-label">Họ và tên</label>
                                 <input type="text" class="form-control" readonly id="name"
-                                       value="{{$name}}">
+                                       value="{{$data->name}}">
                             </div>
                             <div class="form-group">
                                 <label for="birthdate" class="col-form-label">Ngày tháng năm sinh</label>
                                 <input type="text" class="form-control" readonly id="birthdate"
-                                       value="{{$birthday}}">
+                                       value="{{ reformatDateToDMY($data->birthday) }}">
                             </div>
                             <div class="form-group">
                                 <label for="inputAddress2" class="col-form-label">Email</label>
                                 <input type="text" class="form-control" readonly id="inputAddress2"
-                                       value="{{$email}}">
+                                       value="{{$data->email}}">
                             </div>
                             <div class="form-group">
                                 <label for="gender" class="col-form-label">Giới tính</label>
                                 <input type="text" class="form-control" readonly id="gender"
-                                       value="{{$gender}}">
+                                       value="{{ $data->gender == 0 ? 'Nam' : 'Nữ'}}">
                             </div>
 
                             <div class="form-group">
                                 <label for="inputAddress2" class="col-form-label">Địa chỉ</label>
                                 <input type="text" class="form-control" readonly id="inputAddress2"
-                                       value="{{$address}}">
+                                       value="{{$data->address}}">
                             </div>
                             <div class="form-group">
                                 <label for="phone_number" class="col-form-label">Số Điện Thoại</label>
                                 <input type="text" class="form-control" readonly id="phone_numer"
-                                       value="{{$phone_number}}">
+                                       value="{{$data->phone_number}}">
                             </div>
                             <div class="form-group">
                                 <label for="job" class="col-form-label">Nghề nghiệp</label>
                                 <input type="text" class="form-control" readonly id="job"
-                                       value="{{$job}}">
+                                       value="{{$data->job}}">
                             </div>
                             <div class="form-group">
                                 <label for="place" class="col-form-label">Nơi làm việc</label>
                                 <input type="text" class="form-control" readonly id="place"
-                                       value="{{$work_place}}">
+                                       value="{{$data->work_place}}">
                             </div>
-                            <a href="" class="btn btn-primary">Sửa</a>
+                            <a href="{{ route('user.edit', $data) }}" class="btn btn-primary">Sửa</a>
                         </div>
                     </div>
                 </div>

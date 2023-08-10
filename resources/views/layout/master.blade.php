@@ -116,7 +116,7 @@
             <button class="btn btn-primary btn-block mt-4" id="resetBtn">Reset to Default</button>
 
         </div> <!-- end padding-->
-
+        @include('layout.partials.errortoast')
     </div>
 </div>
 

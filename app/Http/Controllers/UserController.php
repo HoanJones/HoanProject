@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
@@ -22,54 +22,42 @@ class UserController extends Controller
         View::share('table', $this->table);
     }
 
-    public function index(User $user)
+    public function index()
     {
-        $id           = Auth::user()->id;
-        $role         = Auth::user()->role;
-        $name         = Auth::user()->name;
-        $birthday     = Auth::user()->birthday;
-        $email        = Auth::user()->email;
-        $gender       = Auth::user()->gender;
-        $address      = Auth::user()->address;
-        $phone_number = Auth::user()->phone_number;
-        $job          = Auth::user()->job;
-        $work_place   = Auth::user()->work_place;
+        $user = $this->model->where('id', Auth::user()->id)
+                            ->firstOrFail();
 
         return view('user.index', [
-            'id'           => $id,
-            'role'         => $role,
-            'name'         => $name,
-            'birthday'     => $birthday,
-            'email'        => $email,
-            'gender'       => $gender,
-            'address'      => $address,
-            'phone_number' => $phone_number,
-            'job'          => $job,
-            'work_place'   => $work_place,
+            'data' => $user,
         ]);
     }
 
     public function edit(User $user)
     {
-        $users = $user->getDatadb();
+        if ($user->id !== Auth::user()->id) {
+            return redirect()->route('user.index')
+                             ->withErrors('You do not have permission to edit this user');
+        }
 
-        return view('home.edit', [
-            'name'         => $users[0]->name,
-            'birthday'     => $users[0]->birthday,
-            'sex'          => $users[0]->sex,
-            'address'      => $users[0]->address,
-            'email'        => $users[0]->email,
-            'phone_number' => $users[0]->phone_number,
-            'job'          => $users[0]->job,
-            'work_place'   => $users[0]->work_place,
+        return view('user.edit', [
+            'data' => $user,
         ]);
     }
 
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $data = $request->except(['_token', '_method']);
-        DB::table('users')->update($data);
+        if ($user->id !== Auth::user()->id) {
+            return redirect()->route('user.index')
+                             ->withErrors('You do not have permission to edit this user');
+        }
 
-        return redirect()->route('home');
+        $arr             = $request->validated();
+        $arr['birthday'] = date('Y-m-d H:i:s', strtotime($request->birthday));
+
+        $object          = $this->model->find(Auth::user()->id);
+        $object->fill($arr);
+        $object->save();
+
+        return redirect()->route('user.index')->with('success', 'Lưu thành công');
     }
 }
