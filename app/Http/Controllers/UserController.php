@@ -58,6 +58,6 @@ class UserController extends Controller
         $object->fill($arr);
         $object->save();
 
-        return redirect()->route('user.index')->with('success', 'Lưu thành công');
+        return redirect()->route('user.index')->with('success', 'Lưu thành công!');
     }
 }

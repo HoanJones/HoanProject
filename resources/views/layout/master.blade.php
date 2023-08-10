@@ -117,6 +117,7 @@
 
         </div> <!-- end padding-->
         @include('layout.partials.errortoast')
+        @include('layout.partials.successtoast')
     </div>
 </div>
 
