@@ -1,6 +1,5 @@
 @extends('layout.master')
 @section('content')
-    @include('layout.partials.errortoast')
     <div class="row">
         <div class="col-12">
             <div class="card">

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ExecutiveBoardController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,7 @@ Route::middleware('auth')->group(function () {
         'destroy',
     ]);
     Route::get('home', [UserController::class, 'index'])->name('home');
+    Route::resource('role', RoleController::class);
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 

@@ -57,6 +57,12 @@
                 <i class="uil-layer-group"></i>
                 <span> Tài khoản khác </span>
             </a>
+{{--            @can('role-list')--}}
+                <a href="{{ route('role.index') }}" class="side-nav-link">
+                    <i class="uil-layer-group"></i>
+                    <span> Quản lý role </span>
+                </a>
+{{--            @endcan--}}
         </li>
     </ul>
 
