@@ -74,7 +74,6 @@ class RoleController extends Controller
 
             return redirect()->route('role.index');
         } catch (\Throwable $th) {
-            //throw $th;
             Log::error($th->getMessage());
 
             return redirect()

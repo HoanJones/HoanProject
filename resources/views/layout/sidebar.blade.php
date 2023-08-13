@@ -33,36 +33,50 @@
                 <i class="uil-calender"></i>
                 <span> Lịch hoạt động </span>
             </a>
+        </li>
+        <li class="side-nav-item">
             <a href="#" class="side-nav-link">
                 <i class="uil-schedule"></i>
                 <span> Lịch sự kiện </span>
             </a>
+        </li>
+        <li class="side-nav-item">
             <a href="#" class="side-nav-link">
                 <i class="uil-clipboard-alt"></i>
                 <span> Sheet - Cảm âm </span>
             </a>
+        </li>
+        <li class="side-nav-item">
             <a href="#" class="side-nav-link">
                 <i class="uil-youtube"></i>
                 <span> Video </span>
             </a>
+        </li>
+        <li class="side-nav-item">
             <a href="#" class="side-nav-link">
                 <i class="uil-music"></i>
                 <span> Mượn/Trả nhạc cụ </span>
             </a>
+        </li>
+        <li class="side-nav-item">
             <a href="#" class="side-nav-link">
                 <i class="uil-lock-open-alt"></i>
                 <span> Đổi mật khẩu </span>
             </a>
+        </li>
+        <li class="side-nav-item">
             <a href="#" class="side-nav-link">
                 <i class="uil-layer-group"></i>
                 <span> Tài khoản khác </span>
             </a>
-{{--            @can('role-list')--}}
-                <a href="{{ route('role.index') }}" class="side-nav-link">
-                    <i class="uil-layer-group"></i>
-                    <span> Quản lý role </span>
-                </a>
-{{--            @endcan--}}
+        <li class="side-nav-item">
+        <li class="side-nav-item">
+            {{--            @can('role-list')--}}
+            <a href="{{ route('role.index') }}" class="side-nav-link">
+                <i class="uil-layer-group"></i>
+                <span> Quản lý role </span>
+            </a>
+            {{--            @endcan--}}
         </li>
     </ul>
 
