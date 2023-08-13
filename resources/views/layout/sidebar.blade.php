@@ -69,14 +69,22 @@
                 <i class="uil-layer-group"></i>
                 <span> Tài khoản khác </span>
             </a>
+        </li>
+        @can('user-read')
+            <li class="side-nav-item">
+                <a href="{{ route('usermanagement.index') }}" class="side-nav-link">
+                    <i class="uil-layer-group"></i>
+                    <span> Quản lý user </span>
+                </a>
+            </li>
+        @endcan
         <li class="side-nav-item">
-        <li class="side-nav-item">
-            {{--            @can('role-list')--}}
-            <a href="{{ route('role.index') }}" class="side-nav-link">
-                <i class="uil-layer-group"></i>
-                <span> Quản lý role </span>
-            </a>
-            {{--            @endcan--}}
+            @can('role-read')
+                <a href="{{ route('role.index') }}" class="side-nav-link">
+                    <i class="uil-layer-group"></i>
+                    <span> Quản lý role </span>
+                </a>
+            @endcan
         </li>
     </ul>
 

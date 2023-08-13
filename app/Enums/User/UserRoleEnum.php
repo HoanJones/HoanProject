@@ -6,10 +6,10 @@ use BenSampo\Enum\Enum;
 
 final class UserRoleEnum extends Enum
 {
-    public const SUPER_ADMIN = 0;
-    public const ADMIN = 1;
-    public const MEMBER = 2;
-    public const EX_MEMBER = 3;
+    public const SUPER_ADMIN = 1;
+    public const ADMIN = 2;
+    public const MEMBER = 3;
+    public const EX_MEMBER = 4;
 
     public static function getArrayView(): array
     {
@@ -21,7 +21,7 @@ final class UserRoleEnum extends Enum
         ];
     }
 
-    public static function getKeyByValue($value): string
+    public static function getKeyByValue($value)
     {
         return array_search($value, self::getArrayView(), true);
     }

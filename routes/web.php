@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ExecutiveBoardController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -32,7 +34,10 @@ Route::middleware('auth')->group(function () {
         'destroy',
     ]);
     Route::get('home', [UserController::class, 'index'])->name('home');
+    Route::resource('event', EventController::class);
+    //admin quan ly
     Route::resource('role', RoleController::class);
+    Route::resource('usermanagement', UserManagementController::class);
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
