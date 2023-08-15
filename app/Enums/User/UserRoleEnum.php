@@ -9,7 +9,6 @@ final class UserRoleEnum extends Enum
     public const SUPER_ADMIN = 1;
     public const ADMIN = 2;
     public const MEMBER = 3;
-    public const EX_MEMBER = 4;
 
     public static function getArrayView(): array
     {
@@ -17,7 +16,6 @@ final class UserRoleEnum extends Enum
             'Super admin'  => self::SUPER_ADMIN,
             'Admin'  => self::ADMIN,
             'Thành viên' => self::MEMBER,
-            'Thành viên cũ' => self::EX_MEMBER,
         ];
     }
 

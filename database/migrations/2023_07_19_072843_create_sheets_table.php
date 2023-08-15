@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('sheet_image'); //hình ảnh bản sheet
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('instrument_type_id')->references('id')->on('instrument_types')->onDelete('cascade');
             $table->timestamps();
         });
     }

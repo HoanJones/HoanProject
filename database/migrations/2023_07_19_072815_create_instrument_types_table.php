@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('instrument_types', function (Blueprint $table) {
             $table->id(); //ID loại nhạc cụ
             $table->string('name')->unique(); //tên loại nhạc cụ
-            $table->text('information')->nullable(); //thông tin về loại nhạc cụs
+            $table->text('description')->nullable(); //thông tin về loại nhạc cụs
             $table->timestamps();
             $table->softDeletes();
         });

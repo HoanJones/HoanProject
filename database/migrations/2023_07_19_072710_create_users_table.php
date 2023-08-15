@@ -23,6 +23,8 @@ return new class extends Migration {
             $table->char('phone_number', 10)->nullable();
             $table->string('job', 100)->nullable();
             $table->string('work_place')->nullable();
+            $table->string('level')->nullable();
+            $table->tinyInteger('user_status')->comment('UserStatusEnum')->index()->default(1);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
