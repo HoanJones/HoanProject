@@ -1,11 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserManagementController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\EventController;
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ExecutiveBoardController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\User\EventController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,13 +27,13 @@ Route::middleware('guest')->group(function () {
 
 //Route vào trang chủ của hệ thống
 Route::middleware('auth')->group(function () {
-    Route::resource('user', UserController::class)->except([
+    Route::resource('profile', UserController::class)->except([
         'show',
         'create',
         'store',
         'destroy',
     ]);
-    Route::get('home', [UserController::class, 'index'])->name('home');
+    Route::get('dashboard', [UserController::class, 'index'])->name('dashboard');
     Route::resource('event', EventController::class);
     //admin quan ly
     Route::resource('role', RoleController::class);

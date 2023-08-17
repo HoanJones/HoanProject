@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('performance_results', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('member_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('term')->nullable(); //kỳ hoạt động
             $table->string('result_infor')->nullable(); //thông tin kết quả
             $table->string('evalute', 30)->nullable(); //đánh giá kết quả hoạt động
-            $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

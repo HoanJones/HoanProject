@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('forms', function (Blueprint $table) {
+        Schema::create('flute_borrowings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('instrument_id'); //id nhạc cụ cần mượn
             $table->unsignedBigInteger('user_id'); //id thành viên CLB mượn nhạc cụ
             $table->date('borrowing_date'); // thời gian mượn
             $table->date('due_date'); // thời gian trả dự kiến
             $table->foreign('instrument_id')->references('id')->on('instruments')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

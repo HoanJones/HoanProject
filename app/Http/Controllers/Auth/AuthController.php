@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\LoggingInRequest;
+use App\Services\Login\RememberMeExpiration;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use App\Services\Login\RememberMeExpiration;
 
 class AuthController extends Controller
 {
@@ -59,7 +60,7 @@ class AuthController extends Controller
      */
     protected function authenticated(Request $request, $user): RedirectResponse
     {
-        return redirect()->intended('user')->with('success', 'You have Successfully Logged In');
+        return redirect()->intended('profile')->with('success', 'You have Successfully Logged In');
     }
 
     public function recoverpw()

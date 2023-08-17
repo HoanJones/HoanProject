@@ -60,7 +60,7 @@
                                 <input type="text" class="form-control" readonly id="place"
                                        value="{{$data->work_place}}">
                             </div>
-                            <a href="{{ route('user.edit', $data) }}" class="btn btn-primary">Sửa</a>
+                            <a href="{{ route('profile.edit', $data) }}" class="btn btn-primary">Sửa</a>
                         </div>
                     </div>
                 </div>

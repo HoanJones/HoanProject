@@ -2,7 +2,7 @@
     <div class="container-fluid">
 
         <!-- LOGO -->
-        <a href="{{route('home')}}" class="topnav-logo">
+        <a href="{{route('dashboard')}}" class="topnav-logo">
                     <span class="topnav-logo-lg">
                         <img src="{{asset('assets/images/logo-light.png')}}" alt="" height="16">
                     </span>
@@ -51,7 +51,7 @@
                     </div>
 
                     <!-- item-->
-                    <a href="{{ route('home') }}" class="dropdown-item notify-item">
+                    <a href="{{ route('dashboard') }}" class="dropdown-item notify-item">
                         <i class="mdi mdi-home mr-1"></i>
                         <span>Dashboard</span>
                     </a>

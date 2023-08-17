@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 
 class UserController extends Controller
@@ -27,7 +27,7 @@ class UserController extends Controller
         $user = $this->model->where('id', Auth::user()->id)
                             ->firstOrFail();
 
-        return view('user.index', [
+        return view('user.profile.index', [
             'data' => $user,
         ]);
     }
@@ -39,7 +39,7 @@ class UserController extends Controller
                              ->withErrors('You do not have permission to edit this user');
         }
 
-        return view('user.edit', [
+        return view('user.profile.edit', [
             'data' => $user,
         ]);
     }
@@ -58,6 +58,6 @@ class UserController extends Controller
         $object->fill($arr);
         $object->save();
 
-        return redirect()->route('user.index')->with('success', 'Lưu thành công!');
+        return redirect()->route('profile.index')->with('success', 'Lưu thành công!');
     }
 }

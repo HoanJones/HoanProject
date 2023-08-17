@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <h4 class="header-title">Thông tin tài khoản người dùng</h4>
                     <div class="tab-content">
-                        <form action="{{ route('user.update', $data) }}" method="post">
+                        <form action="{{ route('profile.update', $data) }}" method="post">
                             @csrf
                             @METHOD('PUT')
                             <div class="tab-pane show active" id="form-users">
