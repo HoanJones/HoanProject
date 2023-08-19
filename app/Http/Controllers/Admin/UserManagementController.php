@@ -7,6 +7,7 @@ use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
@@ -71,13 +72,17 @@ class UserManagementController extends Controller
         DB::table('model_has_roles')->where('model_id', $id)->delete();
         $user->assignRole($request->input('roles'));
 
-        return redirect()->route('usermanagement.index')->with('success', 'thành công');
+        return redirect()->route('usermanagement.index')->with('success', 'Sửa thành công');
     }
 
     public function destroy($id)
     {
+        if(Auth::id() == $id){
+            return redirect()->route('usermanagement.index')->withErrors('Bạn không thể xóa user này!');
+        }
         User::find($id)->delete();
 
-        return redirect()->route('usermanagement.index')->with('success', 'thành công');
+        return redirect()->route('usermanagement.index')->with('success', 'Xóa thành công');
     }
 }
+
