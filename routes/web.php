@@ -3,7 +3,6 @@
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\ExecutiveBoardController;
 use App\Http\Controllers\User\EventController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;

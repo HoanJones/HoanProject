@@ -41,7 +41,7 @@ class UpdateUserRequest extends FormRequest
             'email' => [
                 'nullable',
                 'string',
-                Rule::unique(User::class)->ignore($this->user),
+                Rule::unique(User::class)->ignore($this->profile),
             ],
             'address' => [
                 'nullable',

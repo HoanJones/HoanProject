@@ -6,20 +6,25 @@
                 <div class="card-body">
                     <h4 class="header-title">Thông tin tài khoản người dùng</h4>
                     <div class="tab-content">
-                        <form action="{{ route('profile.update', $data) }}" method="post">
+                        <form action="{{ route('profile.update', ['profile' => $data->id]) }}" method="post">
                             @csrf
                             @METHOD('PUT')
                             <div class="tab-pane show active" id="form-users">
                                 <div class="form-row">
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-4">
                                         <label for="inputId" class="col-form-label">ID</label>
-                                        <input type="text" disabled readonly class="form-control" id="inputId"
+                                        <input type="text" readonly class="form-control" id="inputId"
                                                value="{{ $data->id }}">
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-4">
                                         <label for="role" class="col-form-label">Vai trò</label>
-                                        <input type="text" class="form-control" disabled readonly id="role"
+                                        <input type="text" class="form-control" readonly id="role"
                                                value="{{getUserRoleByKey($data->role)}}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="gender" class="col-form-label">Trạng thái hoạt động</label>
+                                        <input type="text" class="form-control" readonly id="user_status"
+                                               value="{{ \App\Enums\User\UserStatusEnum::getKeyByValue($data->user_status) }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -41,8 +46,8 @@
                                 <div class="form-group">
                                     <label for="gender" class="col-form-label">Giới tính</label>
                                     <select class="form-control select2" data-toggle="select2" name="gender">
-                                            <option value="0" @if($data->gender === 0) selected @endif>Nam</option>
-                                            <option value="1" @if($data->gender === 1) selected @endif>Nữ</option>
+                                        <option value="0" @if($data->gender === 0) selected @endif>Nam</option>
+                                        <option value="1" @if($data->gender === 1) selected @endif>Nữ</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

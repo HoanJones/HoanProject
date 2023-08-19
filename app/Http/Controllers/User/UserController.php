@@ -12,7 +12,6 @@ class UserController extends Controller
 {
     private object $model;
     private string $table;
-    private object $currentUser;
 
     public function __construct()
     {
@@ -32,29 +31,29 @@ class UserController extends Controller
         ]);
     }
 
-    public function edit(User $user)
+    public function edit(User $profile)
     {
-        if ($user->id !== Auth::user()->id) {
-            return redirect()->route('user.index')
+        if ($profile->id !== Auth::user()->id) {
+            return redirect()->route('profile.index')
                              ->withErrors('You do not have permission to edit this user');
         }
 
         return view('user.profile.edit', [
-            'data' => $user,
+            'data' => $profile,
         ]);
     }
 
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $profile)
     {
-        if ($user->id !== Auth::user()->id) {
-            return redirect()->route('user.index')
+        if ($profile->id !== Auth::user()->id) {
+            return redirect()->route('profile.index')
                              ->withErrors('You do not have permission to edit this user');
         }
 
         $arr             = $request->validated();
         $arr['birthday'] = date('Y-m-d H:i:s', strtotime($request->birthday));
 
-        $object          = $this->model->find(Auth::user()->id);
+        $object = $this->model->find(Auth::user()->id);
         $object->fill($arr);
         $object->save();
 

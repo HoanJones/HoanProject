@@ -8,15 +8,20 @@
                     <div class="tab-content">
                         <div class="tab-pane show active" id="form-users">
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="inputId" class="col-form-label">ID</label>
                                     <input type="text" readonly class="form-control" id="inputId"
                                            value="{{ $data->id }}">
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="role" class="col-form-label">Vai trò</label>
                                     <input type="text" class="form-control" readonly id="role"
                                            value="{{getUserRoleByKey($data->role)}}">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="gender" class="col-form-label">Trạng thái hoạt động</label>
+                                    <input type="text" class="form-control" readonly id="user_status"
+                                           value="{{ \App\Enums\User\UserStatusEnum::getKeyByValue($data->user_status) }}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -60,7 +65,7 @@
                                 <input type="text" class="form-control" readonly id="place"
                                        value="{{$data->work_place}}">
                             </div>
-                            <a href="{{ route('profile.edit', $data) }}" class="btn btn-primary">Sửa</a>
+                            <a href="{{ route('profile.edit', ['profile' => $data->id]) }}" class="btn btn-primary">Sửa</a>
                         </div>
                     </div>
                 </div>
