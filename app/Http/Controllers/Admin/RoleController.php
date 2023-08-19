@@ -28,14 +28,14 @@ class RoleController extends Controller
     {
         $roles = Role::all();
 
-        return view('role.index', compact('roles'));
+        return view('admin.role.index', compact('roles'));
     }
 
     public function create()
     {
         $permission = Permission::get();
 
-        return view('role.create', compact('permission'));
+        return view('admin.role.create', compact('permission'));
     }
 
     public function store(RoleRequest $request)
@@ -52,7 +52,7 @@ class RoleController extends Controller
         $rolePermissions = Permission::join("role_has_permissions", "role_has_permissions.permission_id", "=",
             "permissions.id")->where("role_has_permissions.role_id", $id)->get();
 
-        return view('role.show', compact('role', 'rolePermissions'));
+        return view('admin.role.show', compact('role', 'rolePermissions'));
     }
 
     public function edit($id)
@@ -63,7 +63,7 @@ class RoleController extends Controller
                              ->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')
                              ->all();
 
-        return view('role.edit', compact('role', 'permission', 'rolePermissions'));
+        return view('admin.role.edit', compact('role', 'permission', 'rolePermissions'));
     }
 
     public function update(Request $request, $id)

@@ -46,12 +46,14 @@
                 <span> Sheet - Cảm âm </span>
             </a>
         </li>
+        @can('video-read')
         <li class="side-nav-item">
-            <a href="#" class="side-nav-link">
+            <a href="{{ route('video.index') }}" class="side-nav-link">
                 <i class="uil-youtube"></i>
                 <span> Video </span>
             </a>
         </li>
+        @endcan
         <li class="side-nav-item">
             <a href="#" class="side-nav-link">
                 <i class="uil-music"></i>
