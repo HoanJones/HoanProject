@@ -13,9 +13,9 @@ final class UserRoleEnum extends Enum
     public static function getArrayView(): array
     {
         return [
-            'Super admin'  => self::SUPER_ADMIN,
+            'Super Admin'  => self::SUPER_ADMIN,
             'Admin'  => self::ADMIN,
-            'Thành viên' => self::MEMBER,
+            'Member' => self::MEMBER,
         ];
     }
 

@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('event_name');
-            $table->date('start_time'); //thời gian sự kiện bắt đầu
-            $table->date('end_time')->nullable(); // thời gian kết thúc
-            $table->text('event_address');
+            $table->string('start_time'); //thời gian sự kiện bắt đầu
+            $table->string('end_time')->nullable(); // thời gian kết thúc
+            $table->string('event_address');
             $table->unsignedInteger('member_quantity')->nullable();
             $table->timestamps();
         });

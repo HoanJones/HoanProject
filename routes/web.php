@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\User\EventController;
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\VideoController;
 use Illuminate\Support\Facades\Route;
@@ -34,11 +34,11 @@ Route::middleware('auth')->group(function () {
         'destroy',
     ]);
     Route::get('dashboard', [UserController::class, 'index'])->name('dashboard');
-    Route::resource('event', EventController::class);
     Route::resource('video', VideoController::class);
     //admin quan ly
     Route::resource('role', RoleController::class);
     Route::resource('usermanagement', UserManagementController::class);
+    Route::resource('event', EventController::class);
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 

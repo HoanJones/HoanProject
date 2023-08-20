@@ -34,12 +34,14 @@
                 <span> Lịch hoạt động </span>
             </a>
         </li>
-        <li class="side-nav-item">
-            <a href="#" class="side-nav-link">
-                <i class="uil-schedule"></i>
-                <span> Lịch sự kiện </span>
-            </a>
-        </li>
+        @can('event-read')
+            <li class="side-nav-item">
+                <a href="{{ route('event.index') }}" class="side-nav-link">
+                    <i class="uil-schedule"></i>
+                    <span> Lịch sự kiện </span>
+                </a>
+            </li>
+        @endcan
         <li class="side-nav-item">
             <a href="#" class="side-nav-link">
                 <i class="uil-clipboard-alt"></i>
@@ -47,12 +49,12 @@
             </a>
         </li>
         @can('video-read')
-        <li class="side-nav-item">
-            <a href="{{ route('video.index') }}" class="side-nav-link">
-                <i class="uil-youtube"></i>
-                <span> Video </span>
-            </a>
-        </li>
+            <li class="side-nav-item">
+                <a href="{{ route('video.index') }}" class="side-nav-link">
+                    <i class="uil-youtube"></i>
+                    <span> Video </span>
+                </a>
+            </li>
         @endcan
         <li class="side-nav-item">
             <a href="#" class="side-nav-link">
@@ -84,7 +86,7 @@
             @can('role-read')
                 <a href="{{ route('role.index') }}" class="side-nav-link">
                     <i class="uil-layer-group"></i>
-                    <span> Quản lý role </span>
+                    <span> Quản lý vai trò </span>
                 </a>
             @endcan
         </li>
