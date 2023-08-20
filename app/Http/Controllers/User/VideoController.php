@@ -3,14 +3,18 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateVideoRequest;
+use App\Http\Requests\UpdateVideoRequest;
 use App\Models\User;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 
 class VideoController extends Controller
 {
+    private object $model;
     public function __construct()
     {
         $this->model = Video::query();
@@ -21,7 +25,15 @@ class VideoController extends Controller
 
     public function index()
     {
-        $videos = $this->model->get();
+        $videos = DB::table('videos')
+        ->join('users','videos.user_id','=','users.id')
+        ->addSelect([
+            'videos.id',
+            'videos.name',
+            'videos.link',
+            'users.name as user_name'
+        ])
+        ->get();
 
         return view('user.video.index', [
             'data' => $videos,
@@ -39,41 +51,42 @@ class VideoController extends Controller
         return redirect()->route('video.index')->withErrors('Có lỗi xảy ra!');
     }
 
-    public function store(RoleRequest $request)
+    public function store(CreateVideoRequest $request)
     {
-        $role = Role::create(['name' => $request->input('name')]);
-        $role->syncPermissions($request->input('permission'));
+        $data= $request->all();
+        Video::create($data);
 
-        return redirect()->route('role.index');
+        return redirect()->route('video.index')->with('success', 'Sự kiện được thêm thành công!');
     }
 
-    public function edit(User $profile)
+    public function edit($id)
     {
-        if ($profile->id !== Auth::user()->id) {
-            return redirect()->route('profile.index')
-                             ->withErrors('You do not have permission to edit this user');
-        }
-
-        return view('user.profile.edit', [
-            'data' => $profile,
+        $users = User::all();
+        $videos = DB::table('videos')
+        ->join('users','videos.user_id','=','users.id')
+        ->where('videos.id','=',$id)
+        ->addSelect([
+            'videos.id',
+            'videos.name',
+            'videos.link',
+            'users.name as user_name',
+            'users.id as user_id',
+        ])
+        ->get()->first();
+        
+        return view('user.video.edit', [
+            'users' => $users,
+            'data' => $videos,
         ]);
     }
 
-    public function update(UpdateUserRequest $request, User $profile)
+    public function update(UpdateVideoRequest $request, $id)
     {
-        if ($profile->id !== Auth::user()->id) {
-            return redirect()->route('profile.index')
-                             ->withErrors('You do not have permission to edit this user');
-        }
+        $data = $request->all();
+        $video = Video::find($id);
+        $video->update($data);
 
-        $arr             = $request->validated();
-        $arr['birthday'] = date('Y-m-d H:i:s', strtotime($request->birthday));
-
-        $object = $this->model->find(Auth::user()->id);
-        $object->fill($arr);
-        $object->save();
-
-        return redirect()->route('profile.index')->with('success', 'Lưu thành công!');
+        return redirect()->route('video.index')->with('success', 'Sửa thành công');
     }
     public function destroy($id)
     {

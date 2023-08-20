@@ -4,34 +4,32 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Video</h4>
+                    <h4 class="header-title">Loại nhạc cụ</h4>
                     <div class="tab-content">
-                        @can('video-create')
-                            <a class="btn btn-success" href="{{ route('video.create') }}"> Tạo Video mới</a>
+                        @can('instrument_type-create')
+                            <a class="btn btn-success" href="{{ route('instrument_type.create') }}"> Thêm loại nhạc cụ mới</a>
                         @endcan
                         <table class="table table-striped">
                             <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Tên</th>
-                                <th>Đường dẫn</th>
-                                <th>Người đăng tải</th>
+                                <th>Tên loại nhạc cụ</th>
+                                <th>Mô tả</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
-                            @foreach ($data as $key => $video)
+                            @foreach ($data as $key => $instrument_type)
                                 <tr>
-                                    <td>{{ $video->id }}</td>
-                                    <td>{{ $video->name }}</td>
-                                    <td><a target="_blank" rel="noreferrer noopener" href="{{ $video->link }}">Link sang drive</a></td>
-                                    <td>{{ $video->user_name }}</td>
+                                    <td>{{ $instrument_type->id }}</td>
+                                    <td>{{ $instrument_type->name }}</td>
+                                    <td>{{ $instrument_type->description }}</td>
                                     <td>
-                                        @can('video-update')
+                                        @can('instrument_type-update')
                                             <a class="btn btn-info btn-sm mr-2"
-                                               href="{{ route('video.edit', $video->id) }}">Sửa</a>
+                                               href="{{ route('instrument_type.edit', $instrument_type->id) }}">Sửa</a>
                                         @endcan
-                                        @can('video-delete')
-                                            <form action="{{route('video.destroy', $video->id)}}" method='POST'>
+                                        @can('instrument_type-delete')
+                                            <form action="{{route('instrument_type.destroy', $instrument_type->id)}}" method='POST'>
                                                 @csrf
                                                 @METHOD('DELETE')
                                                 <button onclick="return confirm('Bạn có chắc chắn muốn xóa không ?')"

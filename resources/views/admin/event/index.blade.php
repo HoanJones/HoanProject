@@ -12,7 +12,7 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th>STT</th>
+                                <th>Id</th>
                                 <th>Tên sự kiện</th>
                                 <th>Thời gian bắt đầu</th>
                                 <th>Thời gian kết thúc</th>

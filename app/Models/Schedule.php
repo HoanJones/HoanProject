@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Video extends Model
+class Schedule extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
-        'user_id',
-        'link',
+        'schedule_name',
+        'start_time',
+        'end_time',
+        'place',
+        'status',
     ];
 }

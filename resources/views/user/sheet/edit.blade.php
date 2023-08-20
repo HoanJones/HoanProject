@@ -4,27 +4,27 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Thông tin video</h4>
+                    <h4 class="header-title">Thông tin sheet</h4>
                     <div class="tab-content">
-                        <form action="{{ route('video.update', $data->id) }}" method="post">
+                        <form action="{{ route('sheet.update', $data->id) }}" method="post">
                             @csrf
                             @METHOD('PUT')
-                            </div class="tab-pane show active" id="form-videos">
+                            </div class="tab-pane show active" id="form-sheets">
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
-                                        <label for="inputId" class="col-form-label">ID Video</label>
+                                        <label for="inputId" class="col-form-label">ID Sheet - Cảm âm</label>
                                         <input type="text" disabled readonly class="form-control" id="inputId"
                                                value="{{ $data->id }}">
                                     </div>
                                     <div class="form-group col-md-8">
-                                        <label for="name" class="col-form-label">Tên video</label>
+                                        <label for="name" class="col-form-label">Tên Sheet - Cảm âm</label>
                                         <input type="text" class="form-control" name="name"
                                                value="{{$data->name}}">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
-                                        <label for="gender" class="col-form-label">Người đăng</label>
+                                        <label for="gender" class="col-form-label">Người đăng tải</label>
                                         <select class="form-control select2" data-toggle="select2" name="user_id">
                                             @foreach ($users as $user)
                                                 <option value="{{ $user->id }}" @if ($user->id == $data->user_id)
@@ -34,9 +34,9 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-md-8">
-                                        <label for="link" class="col-form-label">Đường dẫn</label>
-                                        <input type="text" class="form-control" name="link"
-                                               value="{{ $data->link }}">
+                                        <label for="sheet_image" class="col-form-label">Đường dẫn</label>
+                                        <input type="text" class="form-control" name="sheet_image"
+                                               value="{{ $data->sheet_image }}">
                                     </div>
                                 </div>
                                 <button class="btn btn-primary">Lưu</button>

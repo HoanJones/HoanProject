@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\InstrumentTypeController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\ScheduleController;
+use App\Http\Controllers\User\SheetController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\VideoController;
 use Illuminate\Support\Facades\Route;
@@ -35,10 +38,13 @@ Route::middleware('auth')->group(function () {
     ]);
     Route::get('dashboard', [UserController::class, 'index'])->name('dashboard');
     Route::resource('video', VideoController::class);
+    Route::resource('sheet', SheetController::class);
     //admin quan ly
     Route::resource('role', RoleController::class);
     Route::resource('usermanagement', UserManagementController::class);
     Route::resource('event', EventController::class);
+    Route::resource('schedule', ScheduleController::class);
+    Route::resource('instrument_type', InstrumentTypeController::class);
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 

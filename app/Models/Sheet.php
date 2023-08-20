@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sheet extends Model
 {
-    protected $table = 'sheets';
     use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'name',
+        'sheet_image',
+    ];
 }

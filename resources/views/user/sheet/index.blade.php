@@ -4,34 +4,35 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Video</h4>
+                    <h4 class="header-title">Sheet - Cảm âm</h4>
                     <div class="tab-content">
-                        @can('video-create')
-                            <a class="btn btn-success" href="{{ route('video.create') }}"> Tạo Video mới</a>
+                        @can('sheet-create')
+                            <a class="btn btn-success" href="{{ route('sheet.create') }}"> Tạo Sheet - Cảm âm mới</a>
                         @endcan
                         <table class="table table-striped">
                             <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Tên</th>
-                                <th>Đường dẫn</th>
+                                <th>Tên Sheet</th>
+                                <th>Link ảnh sheet</th>
                                 <th>Người đăng tải</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
-                            @foreach ($data as $key => $video)
+                            @foreach ($data as $key => $sheet)
                                 <tr>
-                                    <td>{{ $video->id }}</td>
-                                    <td>{{ $video->name }}</td>
-                                    <td><a target="_blank" rel="noreferrer noopener" href="{{ $video->link }}">Link sang drive</a></td>
-                                    <td>{{ $video->user_name }}</td>
+                                    <td>{{ $sheet->id }}</td>
+                                    <td>{{ $sheet->name }}</td>
+                                    <td><a target="_blank" rel="noreferrer noopener" 
+                                        href="{{ $sheet->sheet_image }}">Link sang drive</a></td></td>
+                                    <td>{{ $sheet->user_name }}</td>
                                     <td>
-                                        @can('video-update')
+                                        @can('sheet-update')
                                             <a class="btn btn-info btn-sm mr-2"
-                                               href="{{ route('video.edit', $video->id) }}">Sửa</a>
+                                               href="{{ route('sheet.edit', $sheet->id) }}">Sửa</a>
                                         @endcan
-                                        @can('video-delete')
-                                            <form action="{{route('video.destroy', $video->id)}}" method='POST'>
+                                        @can('sheet-delete')
+                                            <form action="{{route('sheet.destroy', $sheet->id)}}" method='POST'>
                                                 @csrf
                                                 @METHOD('DELETE')
                                                 <button onclick="return confirm('Bạn có chắc chắn muốn xóa không ?')"

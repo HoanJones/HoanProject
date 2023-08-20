@@ -27,13 +27,14 @@
         </li>
 
         <li class="side-nav-title side-nav-item">Tính năng</li>
-
-        <li class="side-nav-item">
-            <a href="#" class="side-nav-link">
-                <i class="uil-calender"></i>
-                <span> Lịch hoạt động </span>
-            </a>
-        </li>
+        @can('schedule-read')
+            <li class="side-nav-item">
+                <a href="{{ route('schedule.index') }}" class="side-nav-link">
+                    <i class="uil-calender"></i>
+                    <span> Lịch hoạt động </span>
+                </a>
+            </li>
+        @endcan
         @can('event-read')
             <li class="side-nav-item">
                 <a href="{{ route('event.index') }}" class="side-nav-link">
@@ -42,12 +43,14 @@
                 </a>
             </li>
         @endcan
+        @can('sheet-read')
         <li class="side-nav-item">
-            <a href="#" class="side-nav-link">
+            <a href="{{ route('sheet.index') }}" class="side-nav-link">
                 <i class="uil-clipboard-alt"></i>
                 <span> Sheet - Cảm âm </span>
             </a>
         </li>
+        @endcan
         @can('video-read')
             <li class="side-nav-item">
                 <a href="{{ route('video.index') }}" class="side-nav-link">
@@ -90,6 +93,14 @@
                 </a>
             @endcan
         </li>
+        @can('instrument_type-read')
+            <li class="side-nav-item">
+                <a href="{{ route('instrument_type.index') }}" class="side-nav-link">
+                    <i class="uil-layer-group"></i>
+                    <span> Quản lý loại nhạc cụ </span>
+                </a>
+            </li>
+        @endcan
     </ul>
 
     <!-- end Help Box -->

@@ -7,8 +7,8 @@
                     <h4 class="header-title">Quản lý role</h4>
                     <div class="tab-content">
                         @can('user-create')
-                            <a class="btn btn-sm btn-success" href="{{ route('usermanagement.create') }}"> Create New
-                                User</a>
+                            <a class="btn btn-sm btn-success" href="{{ route('usermanagement.create') }}"> Thêm người dùng mới
+                            </a>
                         @endcan
                         <table class="table table-bordered">
                             <tr>
@@ -33,6 +33,7 @@
                                             <a class="btn btn-primary btn-sm"
                                                href="{{ route('usermanagement.edit', $user->id) }}">Edit</a>
                                         @endcan
+                                        
                                         @can('user-delete')
                                             <form action="{{ route('usermanagement.destroy', $user->id) }}"
                                                   method="post">
