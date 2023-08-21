@@ -16,19 +16,21 @@
                                 <th width="280px">Action</th>
                             </tr>
                             @foreach ($data as $k => $flute)
-                                <tr>
-                                    <td>{{ $flute->id }}</td>
-                                    <td>{{ $flute->instrument_type_name }}</td>
-                                    <td>{{ $flute->instrument_name }}</td>
-                                    <td>{{ $flute->user_name }}</td>
-                                    <td>{{ $flute->status === 0 ? 'Đã được mượn' : 'Còn hàng' }}</td>
-                                    <td>
-                                        @if($flute->status != 0)
-                                            <a class="btn btn-sm btn-success"
-                                               href="{{ route('flute-borrowing.borrow',$flute->id) }}"> Mượn</a>
-                                        @endif
-                                    </td>
-                                </tr>
+                                @if($flute->status != 2)
+                                    <tr>
+                                        <td>{{ $flute->id }}</td>
+                                        <td>{{ $flute->instrument_type_name }}</td>
+                                        <td>{{ $flute->instrument_name }}</td>
+                                        <td>{{ $flute->user_name }}</td>
+                                        <td>{{ \App\Enums\User\InstrumentStatusEnum::getKeyByValue($flute->status) }}</td>
+                                        <td>
+                                            @if($flute->status != 0)
+                                                <a class="btn btn-sm btn-success"
+                                                   href="{{ route('flute-borrowing.borrow',$flute->id) }}"> Mượn</a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endif
                             @endforeach
                         </table>
                         <ul class="pagination pagination-primary" style="text-align:center;">

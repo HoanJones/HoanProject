@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard', [UserController::class, 'index'])->name('dashboard');
     Route::resource('video', VideoController::class);
     Route::resource('sheet', SheetController::class);
-    Route::group('flute-borrowing', function (){
+    Route::group(['prefix' => 'flute-borrowing', 'as' => 'flute-borrowing.'], function (){
         Route::get('/', [FluteBorrowingController::class,'index'])->name('index');
         Route::get('borrow/{id}', [FluteBorrowingController::class,'borrow'])->name('borrow');
         Route::put('borrow/{id}', [FluteBorrowingController::class,'borrowing'])->name('borrowing');
