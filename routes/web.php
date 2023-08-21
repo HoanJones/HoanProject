@@ -54,7 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::group(['prefix' => 'flute-borrowing-management', 'as' => 'flute-borrowing-management.'], function (){
         Route::get('/', [FluteBorrowingManagementController::class,'index'])->name('index');
         Route::put('accept/{id}', [FluteBorrowingManagementController::class,'acceptBorrow'])->name('accept');
-        Route::put('reject/{id}', [FluteBorrowingManagementController::class,'rejectBorrow'])->name('reject');
+        Route::put('reject/{id}{borrowId}', [FluteBorrowingManagementController::class,'rejectBorrow'])->name('reject');
     });
     Route::resource('schedule', ScheduleController::class);
     Route::resource('instrument_type', InstrumentTypeController::class);

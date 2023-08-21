@@ -50,13 +50,13 @@ class FluteBorrowingManagementController extends Controller
 
     }
 
-    public function rejectBorrow(Request $request, $id)
+    public function rejectBorrow(Request $request, $id, $borrowId)
     {
         $instrument = Instrument::find($id);
         $instrument->status = 1;
         $instrument->save();
 
-        FluteBorrowing::find($id)->delete();
+        FluteBorrowing::find($borrowId)->delete();
 
         return redirect('flute-borrowing-management')->with('success', 'Từ chối thành công!');
     }

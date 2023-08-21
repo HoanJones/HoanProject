@@ -38,7 +38,7 @@
                                                         class="btn btn-success btn-sm" style="margin-top: 0.5rem">Xác nhận
                                                 </button>
                                             </form>
-                                            <form action="{{ route('flute-borrowing-management.reject', $flute->instrument_id) }}"
+                                            <form action="{{ route('flute-borrowing-management.reject', [$flute->instrument_id,$flute->id]) }}"
                                                   method="post">
                                                 @csrf
                                                 @METHOD('PUT')

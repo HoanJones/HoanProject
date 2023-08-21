@@ -89,7 +89,7 @@ class FluteBorrowingController extends Controller
     public function borrowList()
     {
         $data = DB::table('flute_borrowings')
-                  ->join('users', 'users.id', '=', 'flute_borrowings.user_id')
+                  ->join('users', 'flute_borrowings.user_id', '=', 'users.id')
                   ->join('instruments', 'flute_borrowings.instrument_id', '=', 'instruments.id')
                   ->join('instrument_types', 'instrument_type_id', '=', 'instrument_types.id')
                   ->where('flute_borrowings.user_id', '=', Auth::id())
