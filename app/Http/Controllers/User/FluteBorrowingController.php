@@ -14,8 +14,6 @@ use Throwable;
 
 class FluteBorrowingController extends Controller
 {
-    use ResponseTrait;
-
     public function __construct()
     {
         View::share('title', 'MƯỢN TRẢ NHẠC CỤ');
@@ -59,11 +57,11 @@ class FluteBorrowingController extends Controller
     {
         DB::beginTransaction();
         try {
-            $arr                  = $request->all();
-            $arr['user_id']       = Auth::id();
-            $arr['instrument_id'] = $id;
+            $arr                   = $request->all();
+            $arr['user_id']        = Auth::id();
+            $arr['instrument_id']  = $id;
             $arr['borrowing_date'] = date('Y-m-d H:i:s', strtotime($request->borrowing_date));
-            $arr['due_date'] = date('Y-m-d H:i:s', strtotime($request->due_date));
+            $arr['due_date']       = date('Y-m-d H:i:s', strtotime($request->due_date));
 
             $instrument = Instrument::find($id);
             if ( ! $instrument) {
@@ -80,11 +78,31 @@ class FluteBorrowingController extends Controller
 
             DB::commit();
 
-            return $this->successResponse();
+            return redirect('flute-borrowing')->with('success', 'Thuê thành công, hãy đợi admin xác nhận!');
         } catch (Throwable $e) {
             DB::rollBack();
 
-            return $this->errorResponse($e->getMessage());
+            return redirect('flute-borrowing')->withErrors('Thuê thành công, hãy đợi admin xác nhận!');
         }
+    }
+
+    public function borrowList()
+    {
+        $data = DB::table('flute_borrowings')
+                  ->join('users', 'users.id', '=', 'flute_borrowings.user_id')
+                  ->join('instruments', 'flute_borrowings.instrument_id', '=', 'instruments.id')
+                  ->join('instrument_types', 'instrument_type_id', '=', 'instrument_types.id')
+                  ->where('flute_borrowings.user_id', '=', Auth::id())
+                  ->addSelect([
+                      'flute_borrowings.id',
+                      'instrument_types.name as instrument_type_name',
+                      'instruments.name as instrument_name',
+                      'users.name as user_name',
+                      'instruments.status',
+                      'flute_borrowings.borrowing_date',
+                      'flute_borrowings.due_date',
+                  ])->paginate(10);
+
+        return view('user.flute-borrowing.borrow-list', compact('data'));
     }
 }

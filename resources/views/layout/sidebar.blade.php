@@ -85,6 +85,14 @@
                 </a>
             </li>
         @endcan
+        @can('user-read')
+            <li class="side-nav-item">
+                <a href="{{ route('flute-borrowing-management.index') }}" class="side-nav-link">
+                    <i class="uil-layer-group"></i>
+                    <span> Quản lý mượn trả nhạc cụ </span>
+                </a>
+            </li>
+        @endcan
         <li class="side-nav-item">
             @can('role-read')
                 <a href="{{ route('role.index') }}" class="side-nav-link">

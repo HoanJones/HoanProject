@@ -46,7 +46,7 @@
                                                name="due_date" value="">
                                     </div>
                                 </div>
-                                <button class="btn btn-primary">Lưu</button>
+                                <button class="btn btn-primary">Thuê</button>
                             </div>
                         </form>
                     </div>

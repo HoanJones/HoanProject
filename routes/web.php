@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\FluteBorrowingManagementController;
 use App\Http\Controllers\Admin\InstrumentTypeController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserManagementController;
@@ -44,11 +45,17 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [FluteBorrowingController::class,'index'])->name('index');
         Route::get('borrow/{id}', [FluteBorrowingController::class,'borrow'])->name('borrow');
         Route::put('borrow/{id}', [FluteBorrowingController::class,'borrowing'])->name('borrowing');
+        Route::get('borrow-list', [FluteBorrowingController::class,'borrowList'])->name('borrow-list');
     });
     //admin quan ly
     Route::resource('role', RoleController::class);
     Route::resource('usermanagement', UserManagementController::class);
     Route::resource('event', EventController::class);
+    Route::group(['prefix' => 'flute-borrowing-management', 'as' => 'flute-borrowing-management.'], function (){
+        Route::get('/', [FluteBorrowingManagementController::class,'index'])->name('index');
+        Route::put('accept/{id}', [FluteBorrowingManagementController::class,'acceptBorrow'])->name('accept');
+        Route::put('reject/{id}', [FluteBorrowingManagementController::class,'rejectBorrow'])->name('reject');
+    });
     Route::resource('schedule', ScheduleController::class);
     Route::resource('instrument_type', InstrumentTypeController::class);
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');

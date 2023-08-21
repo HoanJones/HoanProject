@@ -5,6 +5,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title">Danh sách nhạc cụ</h4>
+                    <a class=" btn btn-primary" href="{{ route('flute-borrowing.borrow-list') }}">Nhạc cụ đang thuê</a>
                     <div class="tab-content">
                         <table class="table table-striped">
                             <tr>
