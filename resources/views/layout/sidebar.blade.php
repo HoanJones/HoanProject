@@ -60,7 +60,7 @@
             </li>
         @endcan
         <li class="side-nav-item">
-            <a href="#" class="side-nav-link">
+            <a href="{{ route('flute-borrowing.index') }}" class="side-nav-link">
                 <i class="uil-music"></i>
                 <span> Mượn/Trả nhạc cụ </span>
             </a>

@@ -33,7 +33,7 @@
                                             <a class="btn btn-primary btn-sm"
                                                href="{{ route('usermanagement.edit', $user->id) }}">Edit</a>
                                         @endcan
-                                        
+
                                         @can('user-delete')
                                             <form action="{{ route('usermanagement.destroy', $user->id) }}"
                                                   method="post">

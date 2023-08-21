@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\ScheduleController;
+use App\Http\Controllers\User\FluteBorrowingController;
 use App\Http\Controllers\User\SheetController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\VideoController;
@@ -39,6 +40,11 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard', [UserController::class, 'index'])->name('dashboard');
     Route::resource('video', VideoController::class);
     Route::resource('sheet', SheetController::class);
+    Route::group('flute-borrowing', function (){
+        Route::get('/', [FluteBorrowingController::class,'index'])->name('index');
+        Route::get('borrow/{id}', [FluteBorrowingController::class,'borrow'])->name('borrow');
+        Route::put('borrow/{id}', [FluteBorrowingController::class,'borrowing'])->name('borrowing');
+    });
     //admin quan ly
     Route::resource('role', RoleController::class);
     Route::resource('usermanagement', UserManagementController::class);
